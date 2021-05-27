@@ -1,5 +1,5 @@
 from tensorflow.keras.losses import mean_absolute_error
-from degrade_data import generator_bad_and_good_sound
+from degrade_data import generator_low_and_high_sound
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.layers import Dense
@@ -18,7 +18,7 @@ model.compile(
 X = []
 Y = []
 for path in getFileIterator():
-    for (x, y) in generator_bad_and_good_sound(path):
+    for (x, y) in generator_low_and_high_sound(path):
         if len(x[0]) != 980:
             x[0].extend([0.0] * (980 - len(x[0])))
         if len(y[0]) != 1000:
